@@ -1,11 +1,11 @@
 # Berapa Banyak Waktu Dalam Menit Pemain Harus Menebak Kata
-Waktu: 10
+Time: 10
 # Jumlah Hadiah terkecil dan Hadiah terbesar Pemain Dapat Menang Dari Menguraikan Kata Terlebih Dahulu
 # EconomyAPI diperlukan jika hadiah diaktifkan
-Aktifkan Hadiah: true
-Hadiah-Terkecil: 1000
-Hadiah-Terbesar: 5000
-Kata:
+Activate Rewards: true
+-Smallest Gift: 1000
+-Biggest Prize: 5000
+Say:
 - Minecraft
 - Dragon
 - Sheep
