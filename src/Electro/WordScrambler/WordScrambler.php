@@ -1,6 +1,6 @@
 <?php
 
-namespace Electro\WordScrambler;
+namespace skyss0fly\chatscramblers;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\player\PlayerChatEvent;
@@ -15,18 +15,18 @@ class WordScrambler extends PluginBase implements Listener{
     public array $words = [];
     public function onEnable() : void
     {
-        if ($this->getConfig()->get("Aktifkan Hadiah"))
+            if ($this->getConfig()->get("Activate Rewards"))
         {
             $this->rewardEnabled = true;
         }
         if (!$this->getServer()->getPluginManager()->getPlugin("EconomyAPI") && $this->rewardEnabled == true)
         {
-            $this->getLogger()->warning("Hadiah telah dinonaktifkan karena Anda tidak menginstal EconomyAPI di server Anda.");
+            $this->getLogger()->warning("ewards has been disabled because you don't have EconomyAPI installed on your server.");
             $this->rewardEnabled = false;
         }
         $this->loadWords();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->getScheduler()->scheduleDelayedTask(new ScrambleTask($this), (20 * 60 * $this->getConfig()->get("Waktu")));
+        $this->getScheduler()->scheduleDelayedTask(new ScrambleTask($this), (20 * 60 * $this->getConfig()->get("Time")));
     }
 
     public function onChat(playerChatEvent $event)
@@ -45,14 +45,14 @@ class WordScrambler extends PluginBase implements Listener{
 
     public function loadWords()
     {
-        foreach($this->getConfig()->get("Kata") as $word)
+        foreach($this->getConfig()->get("Say") as $word)
         {
             $this->words[] = $word;
         }
     }
     public function playerWon($player)
     {
-        $this->getServer()->broadcastMessage("§6" . $player->getName() . " Telah menjawab kata dengan benar.\n§6Kata itu adalah §e" . $this->word);
+        $this->getServer()->broadcastMessage("§6" . $player->getName() . "Has answered the word correctly.\n§6 The word is §e" . $this->word);
         if ($this->rewardEnabled)
         {
             EconomyAPI::getInstance()->addMoney($player, $this->reward);
@@ -64,19 +64,19 @@ class WordScrambler extends PluginBase implements Listener{
         $this->word = $this->words[array_rand($this->words)];
         if ($this->rewardEnabled)
         {
-            $this->reward = mt_rand($this->getConfig()->get("Hadiah-Terkecil"), $this->getConfig()->get("Hadiah-Terbesar"));
+            $this->reward = mt_rand($this->getConfig()->get("-Smallest Gift"), $this->getConfig()->get("-Biggest Prize"));
         }
         foreach($this->getServer()->getOnlinePlayers() as $player)
         {
             if ($this->rewardEnabled)
             {
-                $player->sendMessage("§bPlayer pertama yang menyusun kata berikut §e". str_shuffle($this->word) ." §bAkan mendapatkan $". $this->reward ."!");
+                $player->sendMessage("§bThe first player to compose the following word §e". str_shuffle($this->word) ." §bWill get $". $this->reward ."!");
             }
             else
             {
-                $player->sendMessage("§bCobalah untuk menjadi player pertama yang menyusun kata §e". str_shuffle($this->word) . "!");
+                $player->sendMessage("§bTry to be the first player to compose the word". str_shuffle($this->word) . "!");
             }
         }
-        $this->getScheduler()->scheduleDelayedTask(new ScrambleTask($this), (20 * 60 * $this->getConfig()->get("Waktu")));
+        $this->getScheduler()->scheduleDelayedTask(new ScrambleTask($this), (20 * 60 * $this->getConfig()->get("Time")));
     }
 }
