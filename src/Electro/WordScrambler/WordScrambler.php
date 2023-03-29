@@ -1,6 +1,6 @@
 <?php
 
-namespace skyss0fly\chatscramblers;
+namespace Electro\WordScrambler;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\player\PlayerChatEvent;
