@@ -1,0 +1,8 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/skyss0fly/chat-scramblers
+build-by-default: true
+branches:
+- main
+projects:
+  chat-scramblers:
+    path: ""
+...
