@@ -5,7 +5,7 @@ namespace Electro\WordScrambler;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\Listener;
-use cooldogedev\BedrockEconomy\BedrockEconomy;
+use cooldogedev/src/cooldogedev/BedrockEconomy/api/BedrockEconomyAPI;
 class WordScrambler extends PluginBase implements Listener{
 
     public ?string $word = null;
@@ -54,7 +54,7 @@ class WordScrambler extends PluginBase implements Listener{
         $this->getServer()->broadcastMessage("§6" . $player->getName() . "Has answered the word correctly.\n§6 The word is §e" . $this->word);
         if ($this->rewardEnabled)
         {
-             BedrockEconomy::getInstance()->addBalance($player, $this->reward);
+             BedrockEconomyAPI::getInstance()->addBalance($player, $this->reward);
         }
     }
 
