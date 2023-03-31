@@ -20,12 +20,13 @@ class WordScrambler extends PluginBase implements Listener{
         }
         if (!$this->getServer()->getPluginManager()->getPlugin("BedrockEconomy") && $this->rewardEnabled == true)
         {
-            $this->getLogger()->warning("ewards has been disabled because you don't have BedrockEconomy installed on your server.");
+            $this->getLogger()->warning("Rewards has been disabled because you don't have BedrockEconomy installed on your server.");
             $this->rewardEnabled = false;
         }
         $this->loadWords();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getScheduler()->scheduleDelayedTask(new ScrambleTask($this), (20 * 60 * $this->getConfig()->get("Time")));
+        $this->getLogger)()->info("This Plugin will be deprecated soon. read the update logs: https://skyss0fly.github.io/ChatScrambler.html");
     }
 
     public function onChat(playerChatEvent $event)
