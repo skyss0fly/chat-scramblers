@@ -5,7 +5,7 @@ namespace Electro\WordScrambler;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\Listener;
-use cooldogedev\BedrockEconomy\BedrockEconomy;
+use cooldogedev\BedrockEconomy\BedrockEconomyAPI;
 class WordScrambler extends PluginBase implements Listener{
 
     public ?string $word = null;
@@ -20,7 +20,7 @@ class WordScrambler extends PluginBase implements Listener{
         }
         if (!$this->getServer()->getPluginManager()->getPlugin("BedrockEconomy") && $this->rewardEnabled == true)
         {
-            $this->getLogger()->warning("ewards has been disabled because you don't have EconomyAPI installed on your server.");
+            $this->getLogger()->warning("ewards has been disabled because you don't have BedrockEconomy installed on your server.");
             $this->rewardEnabled = false;
         }
         $this->loadWords();
@@ -54,7 +54,7 @@ class WordScrambler extends PluginBase implements Listener{
         $this->getServer()->broadcastMessage("§6" . $player->getName() . "Has answered the word correctly.\n§6 The word is §e" . $this->word);
         if ($this->rewardEnabled)
         {
-            EconomyAPI::getInstance()->addMoney($player, $this->reward);
+             BedrockEconomyAPI::getInstance()->addBalance($player, $this->reward);
         }
     }
 
