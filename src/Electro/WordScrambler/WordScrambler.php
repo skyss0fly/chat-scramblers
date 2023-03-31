@@ -8,28 +8,26 @@ use pocketmine\event\Listener;
 use cooldogedev\BedrockEconomy;
 class WordScrambler extends PluginBase implements Listener{
 
+	
     public ?string $word = null;
     public float $reward;
     public bool $rewardEnabled = false;
     public array $words = [];
-    public function onEnable() : void
-    
+   public function onEnable() : void
     {
-      
-            if ($this->getConfig()->get("Activate Rewards"))
+        if ($this->getConfig()->get("Reward-Enabled"))
         {
             $this->rewardEnabled = true;
         }
         if (!$this->getServer()->getPluginManager()->getPlugin("BedrockEconomy") && $this->rewardEnabled == true)
         {
-            $this->getLogger()->warning("Rewards has been disabled because you don't have BedrockEconomy installed on your server.");
+            $this->getLogger()->warning("Reward has been disabled since you do not have BedrockEconomy installed on your server.");
             $this->rewardEnabled = false;
         }
         $this->loadWords();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->getScheduler()->scheduleDelayedTask(new ScrambleTask($this), (20 * 60 * $this->getConfig()->get("Time")));
-           
-	}
+        $this->getScheduler()->scheduleDelayedTask(new ScrambleTask($this), (20 * 60 * $this->getConfig()->get("Scramble-Time")));
+	    $this->getLogger()->warning("This Plugin will be deprecated soon. read the update logs: https://skyss0fly.github.io/ChatScrambler");
     }
 
     public function onChat(playerChatEvent $event)
