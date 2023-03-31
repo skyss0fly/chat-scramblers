@@ -5,7 +5,7 @@ namespace Electro\WordScrambler;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\Listener;
-use cooldogedev\BedrockEconomy\api\BedrockEconomyAPI;
+use cooldogedev\BedrockEconomy;
 class WordScrambler extends PluginBase implements Listener{
 
     public ?string $word = null;
