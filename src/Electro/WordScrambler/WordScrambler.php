@@ -54,7 +54,7 @@ class WordScrambler extends PluginBase implements Listener{
         $this->getServer()->broadcastMessage("§6" . $player->getName() . "Has answered the word correctly.\n§6 The word is §e" . $this->word);
         if ($this->rewardEnabled)
         {
-             BedrockEconomyAPI::getInstance()->addBalance($player, $this->reward);
+             BedrockEconomy::getInstance()->addBalance($player, $this->reward);
         }
     }
 
