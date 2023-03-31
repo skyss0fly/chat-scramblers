@@ -5,8 +5,7 @@ namespace Electro\WordScrambler;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\Listener;
-use onebone\economyapi\EconomyAPI;
-
+use cooldogedev\BedrockEconomy\BedrockEconomy;
 class WordScrambler extends PluginBase implements Listener{
 
     public ?string $word = null;
@@ -19,7 +18,7 @@ class WordScrambler extends PluginBase implements Listener{
         {
             $this->rewardEnabled = true;
         }
-        if (!$this->getServer()->getPluginManager()->getPlugin("EconomyAPI") && $this->rewardEnabled == true)
+        if (!$this->getServer()->getPluginManager()->getPlugin("BedrockEconomy") && $this->rewardEnabled == true)
         {
             $this->getLogger()->warning("ewards has been disabled because you don't have EconomyAPI installed on your server.");
             $this->rewardEnabled = false;
