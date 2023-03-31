@@ -16,6 +16,7 @@ class WordScrambler extends PluginBase implements Listener{
     
     {
         $this->getLogger)()->warning("This Plugin will be deprecated soon. read the update logs: https://skyss0fly.github.io/ChatScrambler");
+        {
             if ($this->getConfig()->get("Activate Rewards"))
         {
             $this->rewardEnabled = true;
