@@ -26,7 +26,7 @@ class WordScrambler extends PluginBase implements Listener{
         $this->loadWords();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getScheduler()->scheduleDelayedTask(new ScrambleTask($this), (20 * 60 * $this->getConfig()->get("Time")));
-        $this->getLogger)()->info("This Plugin will be deprecated soon. read the update logs: https://skyss0fly.github.io/ChatScrambler.html");
+        $this->getLogger)()->info("This Plugin will be deprecated soon. read the update logs: https://skyss0fly.github.io/ChatScrambler");
     }
 
     public function onChat(playerChatEvent $event)
